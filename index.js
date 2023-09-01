@@ -4,6 +4,8 @@ const routesApi = require('./routes')
 const app = express();
 const port = 3006;
 
+app.use(express.json());
+
 app.use(express.static('public'));
 
 app.get('/', (req, res) => {
