@@ -36,9 +36,27 @@ router.get('/:id', (req, res) => {
 
 router.post('/', (request, response) => {
   const body = request.body
-  response.json({
+  response.status(201).json({
     message: 'created',
     data: body,
+  })
+})
+
+router.patch('/:id', (request, response) => {
+  const {id} = request.params;
+  const body = request.body
+  response.json({
+    message: 'update',
+    data: body,
+    id,
+  })
+})
+
+router.delete('/:id', (request, response) => {
+  const {id} = request.params;
+  response.json({
+    message: 'delete',
+    id,
   })
 })
 
