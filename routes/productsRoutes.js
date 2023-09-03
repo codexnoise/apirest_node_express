@@ -17,9 +17,14 @@ router.get('/filter', (req, res) => {
 });
 
 router.get('/:id', async (req, res) => {
-  const {id} = req.params;
-  const product = await service.findOne(id);
-  res.json( product );
+  try{
+    const {id} = req.params;
+    const product = await service.findOne(id);
+    res.json( product );
+  }
+  catch(error){
+    res.json(error)
+  }
 });
 
 router.post('/', (request, response) => {
