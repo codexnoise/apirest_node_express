@@ -52,8 +52,17 @@ class ProductsService {
     return this.products;
   }
 
-  findOne(id) {
-    return this.products.find(item => item.id === id);
+  async findOne(id) {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        const product = this.products.find(item => item.id === id);
+        if(!product){
+          reject('Product not found');
+        }
+        resolve(product);
+      }, 2000);
+
+    })
   }
 }
 

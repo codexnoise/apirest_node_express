@@ -16,9 +16,9 @@ router.get('/filter', (req, res) => {
   res.send('i am a filter' );
 });
 
-router.get('/:id', (req, res) => {
+router.get('/:id', async (req, res) => {
   const {id} = req.params;
-  const product = service.findOne(id);
+  const product = await service.findOne(id);
   res.json( product );
 });
 
