@@ -5,8 +5,8 @@ const ProductsService = require('./../services/product.servies');
 const router = express.Router();
 const service = new ProductsService();
 
-router.get('/', (req, res) => {
-  const products = service.findAll();
+router.get('/', async (req, res) => {
+  const products = await service.findAll();
   res.json(products);
 });
 
@@ -16,14 +16,14 @@ router.get('/filter', (req, res) => {
   res.send('i am a filter' );
 });
 
-router.get('/:id', async (req, res) => {
+router.get('/:id', async (req, res, next) => {
   try{
     const {id} = req.params;
     const product = await service.findOne(id);
     res.json( product );
   }
   catch(error){
-    res.json(error)
+    next(error)
   }
 });
 
@@ -33,11 +33,15 @@ router.post('/', (request, response) => {
   response.status(201).json(newProduct)
 })
 
-router.patch('/:id', (request, response) => {
-  const {id} = request.params;
-  const body = request.body
-  const product = service.update(id, body);
-  response.json(product)
+router.patch('/:id', (request, response, next) => {
+  try{
+    const {id} = request.params;
+    const body = request.body
+    const product = service.update(id, body);
+    response.json(product)
+  }catch(error){
+    next(error)
+  }
 })
 
 router.delete('/:id', (request, response) => {
