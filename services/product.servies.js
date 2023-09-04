@@ -49,7 +49,8 @@ class ProductsService {
   }
 
   findAll() {
-    return this.products;
+    const name =this.getTotal();
+    return name;
   }
 
   async findOne(id) {
