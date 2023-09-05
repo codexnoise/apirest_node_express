@@ -10,7 +10,7 @@ class ProductsService {
     const limit = 10;
     for(let index = 0; index < limit; index++){
       this.products.push({
-        id: faker.datatype.uuid(),
+        id: faker.string.uuid(),
         name: faker.commerce.productName(),
         price: parseInt(faker.commerce.price(), 10),
         image: faker.image.url(),
@@ -21,7 +21,7 @@ class ProductsService {
 
   save(data) {
     const newProduct = {
-      id: faker.datatype.uuid(),
+      id: faker.string.uuid(),
       ...data,
     }
     this.products.push(newProduct);
