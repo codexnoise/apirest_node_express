@@ -11,6 +11,7 @@ app.use(express.json());
 app.use(express.static('public'));
 
 const whitelist = ['http://localhost:8080', 'http://myapp.com'];
+
 const options = {
   origin: (origin, callback) => {
     if(whitelist.includes(origin) || !origin){
@@ -21,7 +22,7 @@ const options = {
   }
 }
 
-app.use(cors(options));
+//app.use(cors(options));
 app.use(logErrors);
 app.use(boomErrorHandler);
 app.use(errorHandler);
@@ -36,7 +37,6 @@ app.get('/new-route', (req, res) => {
   res.send('Hello from new route');
 });
 
-
 app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`);
+  console.log(`Server listening at http://localhost:${port}`);
 });

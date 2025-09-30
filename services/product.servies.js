@@ -56,6 +56,7 @@ class ProductsService {
       }, 2000);
     });
   }
+
   async findOne(id) {
     const product = this.products.find(item => item.id === id);
     if(!product){
